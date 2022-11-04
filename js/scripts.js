@@ -75,6 +75,39 @@ function countQ4ShowQ5(event) {
   document.getElementById("question5").removeAttribute("class");
 }
 
+function countQ5(event) {
+  event.preventDefault();
+  const answer5 = document.querySelector("input[name='q5']:checked").value;
+
+  if (answer5 === "r") {
+    iRuby++;
+  } else if (answer5 === "c") {
+    iC++;
+  } else if (answer5 === "p") {
+    iPython++;
+  }
+  document.getElementById("question5").setAttribute("class", "hidden");
+
+}
+
+function showResult (event) {
+  event.preventDefault;
+  let languageSpan = document.getElementById("languageSpan");
+  let descriptionSpan = document.getElementById("descriptionSpan");
+  document.getElementById("result").removeAttribute("class");
+  if ((iRuby > iC) && (iRuby>iPython)) {
+    languageSpan.innerText = "Ruby";
+    descriptionSpan.innerText = "Here's some info about Ruby";
+  } else if ((iC > iRuby) && (iC > iPython)) {
+    languageSpan.innerText = "C#";
+    descriptionSpan.innerText = "Here's some info about C#";
+  } else if ((iPython>iRuby)&&(iPython>iC)) {
+    languageSpan.innerText = "Python";
+    descriptionSpan.innerText = "Here's some info about Python";
+  }
+
+}
+
 let iRuby = 0
 let iC = 0
 let iPython = 0
@@ -96,4 +129,9 @@ window.addEventListener("load", function () {
   //parse q4
   let q4 = document.getElementById("q4");
   q4.addEventListener("submit", countQ4ShowQ5);
+  //parse q5
+  let q5 = document.getElementById("q5");
+  q5.addEventListener("submit", countQ5);
+  //fill results text
+  q5.addEventListener("submit", showResult);
 });
