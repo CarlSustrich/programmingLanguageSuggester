@@ -1,17 +1,12 @@
-/* steps
-hide sections
-make each button hide current section & unhide next section, dont forget preventdefault on submit
-make index for each language
-++ an index for each answer
-find index with highest value
-replace results text with highest value text
-make start over button refresh page */
+/* left to do:
+figure out how to address ties
+figoure out how to remove event listener*/
 
 function hideIntoShowQ1 (event) {
   event.preventDefault();
   // nextBtn.removeEventListener("click", hideIntoShowQ1);
   document.getElementById("intro").setAttribute("class", "hidden");
-  document.getElementById("question1").removeAttribute("class");
+  document.getElementById("question1").classList.remove("hidden");
 
 }
 
@@ -27,7 +22,7 @@ function countQ1ShowQ2 (event) {
     iPython ++;
   }
   document.getElementById("question1").setAttribute("class", "hidden");
-  document.getElementById("question2").removeAttribute("class");
+  document.getElementById("question2").classList.remove("hidden");
 }
 
 function countQ2ShowQ3 (event) {
@@ -42,7 +37,7 @@ function countQ2ShowQ3 (event) {
     iPython++;
   }
   document.getElementById("question2").setAttribute("class", "hidden");
-  document.getElementById("question3").removeAttribute("class");
+  document.getElementById("question3").classList.remove("hidden");
 }
 
 function countQ3ShowQ4(event) {
@@ -57,7 +52,7 @@ function countQ3ShowQ4(event) {
     iPython++;
   }
   document.getElementById("question3").setAttribute("class", "hidden");
-  document.getElementById("question4").removeAttribute("class");
+  document.getElementById("question4").classList.remove("hidden");
 }
 
 function countQ4ShowQ5(event) {
@@ -72,7 +67,7 @@ function countQ4ShowQ5(event) {
     iPython++;
   }
   document.getElementById("question4").setAttribute("class", "hidden");
-  document.getElementById("question5").removeAttribute("class");
+  document.getElementById("question5").classList.remove("hidden");
 }
 
 function countQ5(event) {
@@ -94,7 +89,7 @@ function showResult (event) {
   event.preventDefault;
   let languageSpan = document.getElementById("languageSpan");
   let descriptionSpan = document.getElementById("descriptionSpan");
-  document.getElementById("result").removeAttribute("class");
+  document.getElementById("result").classList.remove("hidden");
   if ((iRuby > iC) && (iRuby>iPython)) {
     languageSpan.innerText = "Ruby";
     descriptionSpan.innerText = "Here's some info about Ruby";
@@ -105,7 +100,10 @@ function showResult (event) {
     languageSpan.innerText = "Python";
     descriptionSpan.innerText = "Here's some info about Python";
   }
+}
 
+function refreshPage() {
+  window.location.reload();
 }
 
 let iRuby = 0
@@ -134,4 +132,7 @@ window.addEventListener("load", function () {
   q5.addEventListener("submit", countQ5);
   //fill results text
   q5.addEventListener("submit", showResult);
+  //reload btn
+  let reloadBtn = document.getElementById("refresh");
+  reloadBtn.addEventListener ("click", refreshPage);
 });

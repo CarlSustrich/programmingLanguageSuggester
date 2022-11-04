@@ -1,3 +1,24 @@
 .hidden {
   display: none;
 }
+
+body {
+  background-image: url(../img/background.jpg);
+  background-size:100vw ;
+  display: inline-flex;
+  background-repeat: no-repeat;
+}
+
+.hero {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  background-color: rgb(47, 79, 79, .6);
+  color: white;
+  border-radius: 25px;
+  padding: 2em;
+  margin-top: 20vh;
+}
+
+#intro {
+  text-align: center;
+}
