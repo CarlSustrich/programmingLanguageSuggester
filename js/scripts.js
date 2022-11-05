@@ -1,12 +1,7 @@
-/* left to do:
-figure out how to address ties
-figoure out how to remove event listener*/
-
 function hideIntoShowQ1 (event) {
   event.preventDefault();
   document.getElementById("intro").setAttribute("class", "hidden");
   document.getElementById("question1").classList.remove("hidden");
-  // nextBtn.removeEventListener("click", hideIntoShowQ1);
 }
 
 function countQ1ShowQ2 (event) {
@@ -85,20 +80,67 @@ function countQ5(event) {
 }
 
 function showResult (event) {
-  event.preventDefault;
+  event.preventDefault();
   let languageSpan = document.getElementById("languageSpan");
   let descriptionSpan = document.getElementById("descriptionSpan");
-  document.getElementById("result").classList.remove("hidden");
+
   if ((iRuby > iC) && (iRuby>iPython)) {
     languageSpan.innerText = "Ruby";
     descriptionSpan.innerText = "Here's some info about Ruby";
+    document.getElementById("result").classList.remove("hidden");
   } else if ((iC > iRuby) && (iC > iPython)) {
     languageSpan.innerText = "C#";
     descriptionSpan.innerText = "Here's some info about C#";
+    document.getElementById("result").classList.remove("hidden");
   } else if ((iPython>iRuby)&&(iPython>iC)) {
     languageSpan.innerText = "Python";
     descriptionSpan.innerText = "Here's some info about Python";
+    document.getElementById("result").classList.remove("hidden");
+  } else if (iRuby === iC) {
+    document.getElementById("bonus1").classList.remove("hidden");
+  } else if (iRuby === iPython) {
+    document.getElementById("bonus2").classList.remove("hidden");
+  } else if (iC === iPython) {
+    document.getElementById("bonus3").classList.remove("hidden");
   }
+}
+
+
+
+function breakTie1 (event) {
+  event.preventDefault();
+  const answerTB = document.querySelector("input[name='rCTieBreaker']:checked").value;
+  if (answerTB === "r") {
+    iRuby++;
+  } else if (answerTB === "c") {
+    iC++;
+  }
+  document.getElementById("bonus1").setAttribute("class", "hidden");
+  document.getElementById("result").classList.remove("hidden");
+}
+
+function breakTie2(event) {
+  event.preventDefault();
+  const answerTB = document.querySelector("input[name='rPTieBreaker']:checked").value;
+  if (answerTB === "r") {
+    iRuby++;
+  } else if (answerTB === "p") {
+    iPython++;
+  }
+   document.getElementById("bonus2").setAttribute("class", "hidden");
+  document.getElementById("result").classList.remove("hidden");
+}
+
+function breakTie3(event) {
+  event.preventDefault();
+  const answerTB = document.querySelector("input[name='cPTieBreaker']:checked").value;
+  if (answerTB === "c") {
+    iC++;
+  } else if (answerTB === "p") {
+    iPython++;
+  }
+  document.getElementById("bonus3").setAttribute("class", "hidden");
+  document.getElementById("result").classList.remove("hidden");
 }
 
 function refreshPage() {
@@ -131,6 +173,18 @@ window.addEventListener("load", function () {
   q5.addEventListener("submit", countQ5);
   //fill results text
   q5.addEventListener("submit", showResult);
+  //tb1
+  let bonus1 = document.getElementById("rCTieBreaker");
+  bonus1.addEventListener("submit", breakTie1);
+  bonus1.addEventListener("submit", showResult);
+  //tb2
+  let bonus2 = document.getElementById("rPTieBreaker");
+  bonus2.addEventListener("submit", breakTie2);
+  bonus2.addEventListener("submit", showResult);
+  //tb3
+  let bonus3 = document.getElementById("cPTieBreaker");
+  bonus3.addEventListener("submit", breakTie3);
+  bonus3.addEventListener("submit", showResult);
   //reload btn
   let reloadBtn = document.getElementById("refresh");
   reloadBtn.addEventListener ("click", refreshPage);
