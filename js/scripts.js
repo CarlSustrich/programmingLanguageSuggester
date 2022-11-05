@@ -4,10 +4,9 @@ figoure out how to remove event listener*/
 
 function hideIntoShowQ1 (event) {
   event.preventDefault();
-  // nextBtn.removeEventListener("click", hideIntoShowQ1);
   document.getElementById("intro").setAttribute("class", "hidden");
   document.getElementById("question1").classList.remove("hidden");
-
+  // nextBtn.removeEventListener("click", hideIntoShowQ1);
 }
 
 function countQ1ShowQ2 (event) {
