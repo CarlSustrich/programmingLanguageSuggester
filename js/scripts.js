@@ -153,39 +153,39 @@ let iPython = 0
 
 window.addEventListener("load", function () {
 
-// hide intro, show q1
+
   let nextBtn = document.querySelector("button#next");
   nextBtn.addEventListener("click", hideIntoShowQ1);
-  // parse q1
+
   let q1 = document.getElementById("q1");
   q1.addEventListener("submit", countQ1ShowQ2);
-  //parse q2
+
   let q2 = document.getElementById("q2");
   q2.addEventListener("submit", countQ2ShowQ3);
-  //parse q3
+
   let q3 = document.getElementById("q3");
   q3.addEventListener("submit", countQ3ShowQ4);
-  //parse q4
+
   let q4 = document.getElementById("q4");
   q4.addEventListener("submit", countQ4ShowQ5);
-  //parse q5
+
   let q5 = document.getElementById("q5");
   q5.addEventListener("submit", countQ5);
-  //fill results text
+
   q5.addEventListener("submit", showResult);
-  //tb1
+
   let bonus1 = document.getElementById("rCTieBreaker");
   bonus1.addEventListener("submit", breakTie1);
   bonus1.addEventListener("submit", showResult);
-  //tb2
+
   let bonus2 = document.getElementById("rPTieBreaker");
   bonus2.addEventListener("submit", breakTie2);
   bonus2.addEventListener("submit", showResult);
-  //tb3
+
   let bonus3 = document.getElementById("cPTieBreaker");
   bonus3.addEventListener("submit", breakTie3);
   bonus3.addEventListener("submit", showResult);
-  //reload btn
+
   let reloadBtn = document.getElementById("refresh");
   reloadBtn.addEventListener ("click", refreshPage);
 });
